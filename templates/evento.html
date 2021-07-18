@@ -1,0 +1,20 @@
+{% extends "model-page.html" %}
+
+{% block content %}
+  <h2> Adicionar Evento</h2>
+
+  <form action="submit" method="post"> {% csrf_token %}
+      <label1>Titulo: </label1>
+      <input type="text" name="titulo" size="23"><br>
+      <label1>Descrição: </label1>
+      <textarea name="descricao" rows="5" cols="24"></textarea><br>
+      <label1>Data do Evento: </label1>
+      <input type="datetime-local" name="data_evento"><br>
+
+      <a href="/">
+        <button type="submit">Cancelar</button>
+      </a>
+      <button type="submit">Salvar</button>
+  </form>
+
+{% endblock %}
