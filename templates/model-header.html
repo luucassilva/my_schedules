@@ -1,4 +1,32 @@
 
     <meta charset="UTF-8">
-    <title>Agenda</title>
-    <h1>Agenda</h1>
+    <title>My_Schedules</title>
+
+
+    <!-- Container -->
+    <div id="container">
+
+            <!-- Header -->
+            <div id="header">
+                <div id="branding">
+
+                     <h1 id="site-name"><a href="">My_Schedules</a></h1>
+
+                </div>
+
+
+                <div id="user-tools">
+
+                        Bem-Vindo,
+                        <strong>
+                            {% for evento in eventos %}
+                               {{ evento.usuario }}
+                            {% endfor %}
+                        </strong>.
+
+                        <a href="/admin/password_change/">Alterar senha</a> /
+                        <a href="/logout">Sair</a>
+                </div>
+
+            </div>
+    </div>
