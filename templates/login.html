@@ -61,11 +61,13 @@
                           <br class="clear">
                         </div>
 
-                        {% for message in messages%}
-                            <div>
-                                <strong>Erro: </strong>{{ message }}
-                            </div>
-                        {% endfor %}
+                        <div>
+                            {% for message in messages %}
+                                <div align="center">
+                                    <strong>Erro: </strong>{{ message }}
+                                </div>
+                            {% endfor %}
+                        </div>
 
                     </div>
 

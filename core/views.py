@@ -22,7 +22,7 @@ def submit_login(request):
             login(request, usuario)
             return redirect('/')
         else:
-            messages.error(request, "Usuario e/ou senha incorretos")
+            messages.error(request, "Usuario e/ou senha invalidos !")
     return redirect('/')
 
 @login_required(login_url='/login/')
