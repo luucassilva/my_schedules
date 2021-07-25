@@ -1,30 +1,130 @@
-{% extends "model-page.html" %}
+<!DOCTYPE html>
+<html lang="en">
 
-{% block content %}
-  <h2> Adicionar Evento</h2>
+<header>
+<title>Add evento | My_Schedules site admin</title>
 
-  <form action="submit" method="post"> {% csrf_token %}
+<link rel="stylesheet" type="text/css" href="/static/admin/css/base.css">
+<link rel="stylesheet" type="text/css" href="/static/admin/css/nav_sidebar.css">
+<link rel="stylesheet" type="text/css" href="/static/admin/css/changelists.css">
+<link rel="stylesheet" type="text/css" href="/static/admin/css/responsive.css">
+<link rel="stylesheet" type="text/css" href="/static/admin/css/forms.css">
 
-      <input type="number" name="id_evento" value="{{ evento.id}}" hidden><br>
+<script src="/static/admin/js/nav_sidebar.js" defer></script>
+<script src="/admin/jsi18n/"></script>
+<script src="/static/admin/js/vendor/jquery/jquery.js"></script>
+<script src="/static/admin/js/jquery.init.js"></script>
+<script src="/static/admin/js/core.js"></script>
+<script src="/static/admin/js/admin/RelatedObjectLookups.js"></script>
+<script src="/static/admin/js/actions.js"></script>
+<script src="/static/admin/js/urlify.js"></script>
+<script src="/static/admin/js/prepopulate.js"></script>
+<script src="/static/admin/js/vendor/xregexp/xregexp.js"></script>
 
-      <label1>Titulo: </label1>
-      <input type="text" name="titulo" size="23" value="{{ evento.titulo }}"><br>
-      <label1>Descrição: </label1>
-      <textarea name="descricao" rows="5" cols="24" >{{ evento.descricao}}</textarea><br>
-      <label1>Data do Evento: </label1>
-      <input type="datetime-local" name="data_evento" value="{{ evento.get_data_input_evento }}"><br>
+<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="robots" content="NONE,NOARCHIVE">
 
 
-      <a href="delete/{{ evento.id }}">
-        <button type="button">Deletar</button>
-      </a>
+</header>
 
-      <a href="/">
-        <button type="button">Cancelar</button>
-      </a>
+<body class=" app-core model-evento change-form" data-admin-utc-offset="0">
 
-      <button type="submit">Salvar</button>
+<!-- Container -->
+<div id="container">
 
-  </form>
+     <!-- Header -->
+    <div id="header">
+        <div id="branding">
+            <h1 id="site-name"><a href="/">My_Schedules administration</a></h1>
+        </div>
+        <div id="user-tools">
+            Bem Vindo(a),<strong> </strong>.<a href="/admin/password_change/">Alterar senha</a> / <a href="/logout">Sair</a>
+        </div>
+    </div>
+    <!-- END Header -->
 
-{% endblock %}
+    <div class="breadcrumbs">
+       <a href="/">Eventos</a>
+       &rsaquo; Add Evento
+    </div>
+
+    <!-- Content -->
+    <div id="content" class="colM">
+
+        <h1> Adicionar Evento</h1>
+
+        <div id="content-main">
+
+            <form action="submit" method="post" id="evento_form" novalidate> {% csrf_token %}
+
+                <input type="number" name="id_evento" value="{{ evento.id}}" hidden><br>
+
+                <div>
+                    <fieldset class="module aligned ">
+
+                        <div class="form-row field-titulo">
+                            <div>
+                                <label class="required" for="id_titulo">Titulo: </label>
+                                <input type="text" name="titulo"  class="vTextField" maxlength="100" required id="id_titulo" value="{{ evento.titulo }}">
+                            </div>
+                        </div>
+
+                        <div class="form-row field-descricao">
+                            <div>
+                                <label class="required" for="id_descricao">Descrição: </label>
+                                <textarea name="descricao" cols="40" rows="10" class="vLargeTextField" id="id_descricao" >{{ evento.descricao}}</textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-row field-data_evento">
+                            <div>
+                                <label class="required" for="id_data_evento_0">Data do Evento: </label>
+                                <input type="datetime-local" name="data_evento" class="vDateField" required id="id_data_evento_0" value="{{ evento.get_data_input_evento }}"><br>
+                            </div>
+                        </div>
+
+                    </fieldset>
+
+                    <div class="submit-row">
+
+                        <!--
+                        <a href="delete/{{ evento.id }}">
+                           <button type="button"  >Deletar</button>
+                        </a>
+                        -->
+                        <p class="deletelink-box"hidden><a href="delete/{{ evento.id }}" class="deletelink" >Delete</a></p>
+
+                        <!-- <button type="submit">Salvar</button> -->
+                        <input type="submit" value="Salvar" class="default" name="_save">
+
+                        <!--
+                        <a href="/" class="default">
+                           <button type="button" >Cancelar</button>
+                        </a>
+                        -->
+                        <input type="submit" value="Cancelar" class="default" name="_save">
+
+                    </div>
+
+                    <script id="django-admin-form-add-constants"
+                        src="/static/admin/js/change_form.js" data-model-name="evento" async>
+                    </script>
+
+                    <script id="django-admin-prepopulated-fields-constants" src="/static/admin/js/prepopulate_init.js" data-prepopulated-fields="[]">
+                    </script>
+
+
+                </div>
+
+            </form>
+            <br class="clear">
+        </div>
+        <!-- END Content -->
+
+    </div>
+
+</div>
+<!-- END Container -->
+
+</body>
+
