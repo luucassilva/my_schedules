@@ -1,21 +1,145 @@
-{% extends "model-page.html" %}
+<!DOCTYPE html>
+<html lang="en">
 
-{% block content %}
-    <h2>Agendamentos</h2>
+<head>
 
-    <a href="evento/">
-    <button type="button">Add Evento</button>
-    </a>
+<title>Add evento | My_Schedules site admin</title>
 
-    <ul style="font-size: 18px">
-        {% for evento in eventos %}
-            <li>
-                <a href="evento/?id={{ evento.id }}">{{ evento.titulo }}</a> -
-                {{ evento.get_data_evento }} -
-                {{ evento.get_data_criacao }}
-            </li>
-        {% endfor %}
-    </ul>
+<link rel="stylesheet" type="text/css" href="/static/admin/css/base.css">
+<link rel="stylesheet" type="text/css" href="/static/admin/css/nav_sidebar.css">
+<link rel="stylesheet" type="text/css" href="/static/admin/css/changelists.css">
+<link rel="stylesheet" type="text/css" href="/static/admin/css/responsive.css">
+<link rel="stylesheet" type="text/css" href="/static/admin/css/forms.css">
 
-{% endblock%}
+<script src="/static/admin/js/nav_sidebar.js" defer></script>
+<script src="/admin/jsi18n/"></script>
+<script src="/static/admin/js/vendor/jquery/jquery.js"></script>
+<script src="/static/admin/js/jquery.init.js"></script>
+<script src="/static/admin/js/core.js"></script>
+<script src="/static/admin/js/admin/RelatedObjectLookups.js"></script>
+<script src="/static/admin/js/actions.js"></script>
+<script src="/static/admin/js/urlify.js"></script>
+<script src="/static/admin/js/prepopulate.js"></script>
+<script src="/static/admin/js/vendor/xregexp/xregexp.js"></script>
+
+<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="robots" content="NONE,NOARCHIVE">
+
+</head>
+
+<body class=" app-core model-evento change-list" data-admin-utc-offset="0">
+
+    <!-- Container -->
+    <div id="container">
+
+        <!-- Header -->
+        <div id="header">
+            <div id="branding">
+                <h1 id="site-name"><a href="/">My_Schedules administration</a></h1>
+            </div>
+            <div id="user-tools">
+                Bem Vindo(a),<strong> {{ evento.get_usuario }} </strong>.<a href="/admin/password_change/">Alterar senha</a> / <a href="/logout">Sair</a>
+            </div>
+        </div>
+        <!-- END Header -->
+
+        <div class="breadcrumbs">
+            <a href="/">Eventos</a>
+        </div>
+
+        <div class="main shifted" id="main">
+
+            <div class="content">
+
+                <!-- Content -->
+                <div id="content" class="">
+
+                    <h1>Eventos</h1>
+
+                        <div id="content-main">
+
+                            <ul class="object-tools">
+                                <li>
+                                    <a href="evento/" class="addlink">Add Evento</a>
+                                </li>
+                            </ul>
+
+                            <div class="module filtered" id="changelist">
+
+                                <div class="changelist-form-container">
+
+                                    <form id="changelist-form" method="post" novalidate><input type="hidden" name="csrfmiddlewaretoken" value="1wLHCGsO1cBUCfnz71geqyP7GfG8RfCqUZFQzIIY3CM61VC5tCjnDYrgJjbH0BDp">
+
+                                        <div class="results">
+
+                                            <table id="result_list">
+
+                                                <thead>
+
+                                                    <tr>
+                                                        <th scope="col" class="sortable column-titulo">
+                                                               <div class="text"><a href="#">Titulo</a></div>
+                                                               <div class="clear"></div>
+                                                        </th>
+
+                                                        <th scope="col" class="sortable column-data_evento">
+                                                            <div class="text"><a href="#">Data do Evento</a></div>
+                                                            <div class="clear"></div>
+                                                        </th>
+
+                                                        <th scope="col" class="sortable column-data_criacao">
+                                                            <div class="text"><a href="#">Data da Criação</a></div>
+                                                            <div class="clear"></div>
+                                                        </th>
+
+                                                        <th scope="col" class="sortable column-id">
+                                                            <div class="text"><a href="#"></a></div>
+                                                            <div class="clear"></div>
+                                                        </th>
+
+                                                    </tr>
+
+                                                </thead>
+
+                                                <tbody>
+
+                                                    {% for evento in eventos %}
+
+                                                        <tr><td class="field-titulo">{{ evento.titulo }}</td><td class="field-data_evento nowrap">{{ evento.get_data_evento }}</td><td class="field-data_criacao nowrap">{{ evento.get_data_criacao }}</td><th class="field-id"><a href="evento/?id={{ evento.id }}">Editar</a></th></tr>
+                                                        <!--
+                                                        <ul style="font-size: 18px">
+                                                            {% for evento in eventos %}
+                                                                <li>
+                                                                    <a href="evento/?id={{ evento.id }}">{{ evento.titulo }}</a> -
+                                                                    {{ evento.get_data_evento }} -
+                                                                    {{ evento.get_data_criacao }}
+                                                                </li>
+                                                            {% endfor %}
+                                                        </ul>
+                                                        -->
+                                                    {% endfor %}
+                                                </tbody>
+
+                                            </table>
+
+                                        </div>
+
+                                    </form>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                </div>
+
+            </div>
+
+    </div>
+    <!-- END Container -->
+
+</body>
+
+</html>
 
